@@ -17,4 +17,8 @@ class User < ApplicationRecord
   validates :email, format: { with: /[\w]*\@[\w]*\.[\w]/, message: 'Check Email Format' }
   validates :password, length: { in: 8..32, message: 'Length should between 8 to 32' }
   has_many :transactions
+
+  before_create do
+    balance = 0.0
+  end
 end

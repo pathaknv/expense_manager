@@ -2,8 +2,9 @@
 <ul>
   <li><strong>Name: </strong><%= @user.first_name + @user.last_name %></li>
   <li><strong>Email: </strong><%= @user.email%></li>
+  <li><strong>Balance: </strong><%= @user.balance%></li>
 </ul>
 
 <%= link_to('New Transcation', new_user_transaction_path(@user)) %>
-<%= link_to('Show Transcation', user_transaction_path(@user)) %>
+<%= link_to('Show Transcation', user_transaction_path(@transaction)) if @transaction != nil %>
 <%= link_to('Back', users_path) %>

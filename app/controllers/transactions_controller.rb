@@ -12,7 +12,7 @@ class TransactionsController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @transaction = Transcation.find(params[:user_id])
+    @transactions = Transaction.where(user_id: params[:id])
   end
 
   def index

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    #@transaction = Transcation.find_by(user_id: params[:id])
+    @transaction = Transaction.find_by(user_id: params[:id])
   end
 
   private
