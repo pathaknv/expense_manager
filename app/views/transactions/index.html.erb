@@ -1,0 +1,16 @@
+<h1>Users List</h1>
+<%= link_to('Register Here', new_user_path) %>
+<table>
+  <tr>
+    <th>Transaction type</th>
+    <th>Amount</th>
+    <th>Balance</th>
+  </tr>
+  <% @transactions.each do |transaction| %>
+    <tr>
+      <td><%= @transaction.transaction_type %></td>
+      <td><%= @transaction.amount %></td>
+      <td><%= @transaction.balance %></td>
+  </tr>
+  <% end %>
+</table>
