@@ -1,5 +1,5 @@
 <%= form_with scope: :transaction, url: user_transactions_path, local: true do |form| %>
-<table>
+<table border = "2">
   <tr>
     <td>Transaction Type</td>
     <td>
@@ -10,7 +10,7 @@
     </tr>
     <tr>
       <td>Amount</td>
-      <td>form.text_field :amount</td>
+      <td><%= form.text_field :amount %></td>
     </tr>
     <tr>
       <td>Category</td>
