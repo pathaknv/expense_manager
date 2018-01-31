@@ -8,6 +8,7 @@ class TransactionsController < ApplicationController
     @transaction_params_hash = transaction_params
     @transaction_params_hash[:balance] = calculate_balance
     @transaction = @user.transactions.create(@transaction_params_hash)
+    redirect_to @transaction
   end
 
   def show
@@ -25,6 +26,8 @@ class TransactionsController < ApplicationController
 
   def transaction_params
     params.require(:transaction).permit(:transaction_type, :amount, :category, :user_id)
+    params[:transaction][:category] = params[:transaction][:category].to_i
+    params
   end
 
   # calcluate_balance methods takes user_id from parameters and finds balance from user model
@@ -33,10 +36,10 @@ class TransactionsController < ApplicationController
   # updates new balance on user
 
   def calculate_balance
-    balance = User.select(:balance).where(id:params.require(:transaction).permit(:user_id)).pluck(:balance)[0]
-    amount = params.require(:transaction).permit(:amount)
+    balance = User.select(:balance).where(id:params[:user_id]).pluck(:balance)[0]
+    amount = params.require(:transaction).permit(:amount)[:amount].to_f
     balance = balance - amount
-    User.where(:user_id => params.require(:transaction).permit(:user_id)).update(:balance => balance)
+    User.where(:id => params.require(:transaction).permit(:user_id)[:user_id].to_i).update(:balance => balance)
     balance
   end
 end
