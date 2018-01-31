@@ -8,9 +8,9 @@
   </tr>
   <% @transactions.each do |transaction| %>
     <tr>
-      <td><%= @transaction.transaction_type %></td>
-      <td><%= @transaction.amount %></td>
-      <td><%= @transaction.balance %></td>
+      <td><%= transaction.transaction_type %></td>
+      <td><%= transaction.amount %></td>
+      <td><%= transaction.balance %></td>
   </tr>
   <% end %>
 </table>

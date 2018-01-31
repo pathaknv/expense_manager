@@ -15,11 +15,11 @@
     <tr>
       <td>Category</td>
       <td>
-        <select name = "transaction[category]">
-          <option value = "1">Food</option>
-          <option value = "2">Grocery</option>
-          <option value = "3">Travelling</option>
-          <option value = "4">Other</option>
+        <select name = "transaction[category_id]">
+          <% @categories.each do |category| %>
+            <option value = <%= category.id %>> <%= category.name %> </option>
+          <% end %>
+        </select>
       </td>
   </table>
   <%= form.submit %>
