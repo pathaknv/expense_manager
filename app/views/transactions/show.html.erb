@@ -1,0 +1,11 @@
+<h1>Transcation History</h1>
+<ul>
+  <% @transactions.each do |transaction| %>
+    <li><strong>Name: </strong><%= @user.first_name + @user.last_name %></li>
+    <li><strong>Transcation Type: </strong><%= transaction.type %></li>
+    <li><strong>Amount: </strong><%= transaction.amount %></li>
+    <li><strong>Current Balance: </strong><%= transaction.balance %></li>
+    <li><strong>Time: </strong><%= transaction.created_at %></li>
+</ul>
+
+<%= link_to('Back', user_path(@user)) %>

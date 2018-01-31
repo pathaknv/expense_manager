@@ -10,6 +10,11 @@ class TransactionsController < ApplicationController
     @transaction = @user.transactions.create(@transaction_params_hash)
   end
 
+  def show
+    @user = User.find(params[:id])
+    @transaction = Transcation.find(params[:user_id])
+  end
+
   def index
     @user = User.find(params[:user_id])
     @transactions = @user.transactions.all
