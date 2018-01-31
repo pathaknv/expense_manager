@@ -33,10 +33,10 @@ class TransactionsController < ApplicationController
   # updates new balance on user
 
   def calculate_balance
-    balance = User.select(:balance).where(id:params.require(:transaction).permit(:user_id)).pluck(:balance)[0]
-    amount = params.require(:transaction).permit(:amount)
+    balance = User.select(:balance).where(id:params.:user_id).pluck(:balance)[0]
+    amount = params.require(:transaction).permit(:amount)[:amount].to_f
     balance = balance - amount
-    User.where(:user_id => params.require(:transaction).permit(:user_id)).update(:balance => balance)
+    User.where(:user_id => params.require(:transaction).permit(:user_id)[:user_id].to_i).update(:balance => balance)
     balance
   end
 end
