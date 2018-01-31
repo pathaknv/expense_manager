@@ -1,7 +1,9 @@
 <h1>Users List</h1>
-<table>
+<%= link_to('Register Here', new_user_path) %>
+<ul>
   <% @users.each do |user| %>
-  <tr>
-    <td><strong>Name: </strong><%= user.first_name + user.last_name %></td>
-  </tr>
-</table>
+    <li>
+    <%= link_to(user.first_name + ' ' + user.last_name, user_path(user))%>
+  </li>
+  <% end %>
+</ul>

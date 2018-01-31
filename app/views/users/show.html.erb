@@ -1,2 +1,9 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>User Profile</h1>
+<ul>
+  <li><strong>Name: </strong><%= @user.first_name + @user.last_name %></li>
+  <li><strong>Email: </strong><%= @user.email%></li>
+</ul>
+
+<%= link_to('New Transcation', new_user_transaction_path(@user)) %>
+<%= link_to('Show Transcation', user_transaction_path(@user)) %>
+<%= link_to('Back', users_path) %>
