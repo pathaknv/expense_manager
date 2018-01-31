@@ -1,0 +1,26 @@
+<%= form_with scope: :transaction, url: user_transactions_path, local: true do |form| %>
+<table>
+  <tr>
+    <td>Transaction Type</td>
+    <td>
+      <select name = "transaction[transaction_type]">
+        <option value = "credit">credit</option>
+        <option value = "debit">debit</option>
+      </td>
+    </tr>
+    <tr>
+      <td>Amount</td>
+      <td>form.text_field :amount</td>
+    </tr>
+    <tr>
+      <td>Category</td>
+      <td>
+        <select name = "transaction[category]">
+          <option name = "1">Food</option>
+          <option name = "2">Grocery</option>
+          <option name = "3">Travelling</option>
+          <option name = "4">Other</option>
+      </td>
+  </table>
+  <%= form.submit %>
+<% end %>
