@@ -22,6 +22,11 @@ class TransactionsController < ApplicationController
     params.require(:transaction).permit(:transaction_type, :amount, :category, :user_id)
   end
 
+  # calcluate_balance methods takes user_id from parameters and finds balance from user model
+  # takes amount from new view
+  # calculates new balance
+  # updates new balance on user
+
   def calculate_balance
     balance = User.select(:balance).where(params.require(:transaction).permit(:user_id))
     amount = params.require(:transaction).permit(:amount)
