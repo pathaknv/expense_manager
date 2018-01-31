@@ -14,7 +14,8 @@ class TransactionsController < ApplicationController
 
   private
   def transaction_params
+    get_current_balance params[:user_id]
     params.require(:transaction).permit(:transaction_type, :amount, :category, :user_id)
   end
-  
+
 end
