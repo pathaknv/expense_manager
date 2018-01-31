@@ -25,7 +25,7 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-    params.require(:transaction).permit(:transaction_type, :amount, :category, :user_id)
+    params.require(:transaction).permit(:transaction_type, :amount, :category_id, :user_id)
     params[:transaction][:category] = params[:transaction][:category].to_i
     params
   end

@@ -6,4 +6,9 @@ class Transaction < ApplicationRecord
   validates :amount, format: { with: /\A[1-9]\d*(\.\d+)?\z/, message: "characters not allowed" }
   validates :balance, format: { with: /\A[1-9]\d*(\.\d+)?\z/, message: "characters not allowed" }
 
+  before_create do
+    user = self.user
+    user.balance = user.balan
+  end
+
 end
