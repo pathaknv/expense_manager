@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+  include TransactionsHelper
   def new
   end
 
