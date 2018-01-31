@@ -1,14 +1,14 @@
 class TransactionsController < ApplicationController
-  include TransactionsHelper
   def new
+    @categories = Category.select(:id, :name).all
   end
 
   def create
     @user = User.find(params[:user_id])
-    @transaction_params_hash = transaction_params
-    @transaction_params_hash[:balance] = calculate_balance
-    @transaction = @user.transactions.create(@transaction_params_hash)
-    redirect_to @transaction
+    # @transaction_params_hash = transaction_params
+    # @transaction_params_hash[:transaction][:balance] = calculate_balance
+    @transaction = @user.transactions.create!(transaction_params)
+    redirect_to user_transactions_path(@user)
   end
 
   def show
@@ -25,9 +25,7 @@ class TransactionsController < ApplicationController
   private
 
   def transaction_params
-    params.require(:transaction).permit(:transaction_type, :amount, :category_id, :user_id)
-    params[:transaction][:category] = params[:transaction][:category].to_i
-    params
+    params.require(:transaction).permit(:transaction_type, :amount, :category_id, :user_id, :balance)
   end
 
   # calcluate_balance methods takes user_id from parameters and finds balance from user model

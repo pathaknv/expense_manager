@@ -5,12 +5,14 @@
     <th>Transaction type</th>
     <th>Amount</th>
     <th>Balance</th>
+    <th>Time</th>
   </tr>
   <% @transactions.each do |transaction| %>
     <tr>
-      <td><%= @transaction.transaction_type %></td>
-      <td><%= @transaction.amount %></td>
-      <td><%= @transaction.balance %></td>
+      <td><%= transaction.transaction_type %></td>
+      <td><%= transaction.amount %></td>
+      <td><%= transaction.balance %></td>
+      <td><%= transaction.created_at %>
   </tr>
   <% end %>
 </table>
