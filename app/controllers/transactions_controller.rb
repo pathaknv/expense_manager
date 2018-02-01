@@ -13,9 +13,12 @@ class TransactionsController < ApplicationController
     @user = User.find(params[:id])
     if params[:filter_option] == 'by_month'
       @transactions = @user.transactions.where("cast(strftime('%m', created_at) as int) = ?", params[:month_id])
-    else
+    elsif params[:filter_option] == 'by_date'
       @transactions = @user.transactions.where(created_at: params[:start_date]..params[:end_date])
+    elsif params[:filter_option] == 'by_category'
+      @transactions = @user.transactions.where(category_id: params[:category_id])
     end
+    @categories = Category.all
     respond_to do |format|
       format.html
       format.json { render :json => { :user => @user, :transactions => @transactions } }
