@@ -1,20 +1,80 @@
-<h1>Transcation History</h1>
-  <table border>
-    <tr>
-      <th>Name</th>
-      <th>Transcation Type</th>
-      <th>Amount</th>
-      <th>Current Balance</th>
-      <th>Time</th>
-    </tr>
-    <% @transactions.each do |transaction| %>
-    <tr>
-      <td><%= @user.first_name + ' ' + @user.last_name %></td>
-      <td><%= transaction.transaction_type %></td>
-      <td><%= transaction.amount %></td>
-      <td><%= transaction.balance %></td>
-      <td><%= transaction.created_at %></td>
-    </tr>
-  <% end %>
-</table>
-<%= link_to('Back', user_path(@user)) %>
+<center>
+ <%= form_with scope: :transaction, url: user_transaction_path(@user), method: :get, local: true do |form| %>
+<h3>Select Filter</h3>
+<table border = '1'>
+ <tr>
+   <td>
+     <table>
+     <tr>
+       <td>
+         <%= radio_button_tag(:filter_option, "by_date") %>
+         <%= label_tag(:filter_option_by_date, "Search by date") %>
+       </td>
+     </tr>
+     <tr>
+       <td>Start date</td>
+       <td><%= date_field_tag(:start_date, :start_date) %></td>
+     </tr>
+     <tr>
+       <td>End date</td>
+       <td><%= date_field_tag(:end_date, :end_date) %></td>
+     </tr>
+   </table>
+   </td>
+   <td>
+     <table>
+       <tr>
+         <td>
+           <%= radio_button_tag(:filter_option, "by_month") %>
+           <%= label_tag(:filter_option_by_month, "Search by month") %>
+         </td>
+       </tr>
+       <tr>
+         <td>Select Month</td>
+         <td>
+           <%= select_tag(:month_id, options_for_select(1..12)) %>
+         </td>
+       </tr>
+     </table>
+   </td>
+   <td>
+     <table>
+       <tr>
+         <td>
+           <%= radio_button_tag(:filter_option, "by_category") %>
+           <%= label_tag(:filter_option_by_category, "Search by Category") %>
+         </td>
+       </tr>
+       <tr>
+         <td>Select Category</td>
+         <td>
+           <%= select_tag(:category_id, options_for_select(1..12)) %>
+         </td>
+       </tr>
+     </table>
+   </td>
+ </tr>
+</table><br><br>
+<%= form.submit :Submit %>
+<% end %>
+<% if params[:commit] != nil %>
+  <h1>Transcation History</h1>
+    <table border>
+      <tr>
+        <th>Transcation Type</th>
+        <th>Amount</th>
+        <th>Current Balance</th>
+        <th>Time</th>
+      </tr>
+      <strong>Name: <%= @user.first_name + ' ' + @user.last_name %></strong><br><br>
+      <% @transactions.each do |transaction| %>
+        <tr>
+          <td align="center"><%= transaction.transaction_type %></td>
+          <td align="center"><%= transaction.amount %></td>
+          <td align="center"><%= transaction.balance %></td>
+          <td align="center"><%= transaction.created_at %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to('Back', user_path(@user)) %>
+<% end %>

@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     @transaction = Transaction.find_by(user_id: params[:id])
     respond_to do |format|
       format.html
-      format.json { render :json => { :user => @user, :transaction => @transaction  }
+      #format.json { render :json => { :user => @user, :transaction => @transaction  }
     end
   end
 

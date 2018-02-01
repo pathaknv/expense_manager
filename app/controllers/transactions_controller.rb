@@ -11,7 +11,11 @@ class TransactionsController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @transactions = Transaction.where(user_id: params[:id])
+    if params[:filter_option] == 'by_month'
+      @transactions = @user.transactions.where("cast(strftime('%m', created_at) as int) = ?", params[:month_id])
+    else
+      @transactions = @user.transactions.where(created_at: params[:start_date]..params[:end_date])
+    end
     respond_to do |format|
       format.html
       format.json { render :json => { :user => @user, :transactions => @transactions } }
@@ -37,7 +41,7 @@ class TransactionsController < ApplicationController
   def transaction_params
     params.require(:transaction).permit(:transaction_type, :amount, :category_id, :user_id, :balance)
   end
-  
+
   def calculate_balance
     balance = User.select(:balance).where(id:params[:user_id]).pluck(:balance)[0]
     amount = params.require(:transaction).permit(:amount)[:amount].to_f
