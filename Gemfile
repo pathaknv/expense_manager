@@ -59,4 +59,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'haml'
+<<<<<<< HEAD
 gem 'bootstrap', '~> 4.0.0'
+=======
+gem 'bootstrap'
+>>>>>>> 34930e9f088ee610ba7ae8c405ff19be55cf713e

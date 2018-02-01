@@ -1,51 +1,44 @@
 <%= form_with scope: :transaction, url: user_transaction_path(user), local: true do |form| %>
 <center>
+  <%= form_with scope: :transaction, url: user_transaction_path(@user), method: :get, local: true do |form| %>
 <h3>Select Filter</h3>
 <table border = '1'>
   <tr>
     <td>
       <table>
       <tr>
-        <td align = "center"><input type = 'radio' name = "transaction" value = "by_date"></td>
-        <td>Show by date</td>
+        <td>
+          <%= radio_button_tag(:filter_option, "by_date") %>
+          <%= label_tag(:filter_option_by_date, "Search by date") %>
+        </td>
       </tr>
       <tr>
         <td>Start date</td>
-        <td><input type = "date" name = "start_date"></td>
+        <td><%= date_field(:transactions, :end_date) %></td>
       </tr>
       <tr>
         <td>End date</td>
-        <td><input type = "date" name = "end_date"></td>
+        <td><%= date_field(:transactions, :end_date) %></td>
       </tr>
     </table>
     </td>
     <td>
       <table>
         <tr>
-          <td align = "center"><input type = 'radio' name = "transaction" value = "month"></td>
-          <td>Show by month</td>
+          <td>
+            <%= radio_button_tag(:filter_option, "by_month") %>
+            <%= label_tag(:filter_option_by_month, "Search by month") %>
+          </td>
         </tr>
       <tr>
         <td>Select month</td>
         <td>
-          <select name = "month">
-            <option value = "January">January</option>
-            <option value = "February">Feruary</option>
-            <option value = "March">March</option>
-            <option value = "April">April</option>
-            <option value = "May">May</option>
-            <option value = "June">June</option>
-            <option value = "July">July</option>
-            <option value = "August">August</option>
-            <option value = "September">September</option>
-            <option value = "October">October</option>
-            <option value = "November">November</option>
-            <option value = "December">December</option>
-        </td>
+          <%= select_tag(:month_id, options_for_select(1..12)) %>
+      </td>
       </tr>
     </table>
     </td>
   </tr>
 </table><br><br>
-<input type = "submit" value = "Show transactions">
+<%= form.submit %>
 <% end %>

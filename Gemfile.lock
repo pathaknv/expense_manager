@@ -218,7 +218,11 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+<<<<<<< HEAD
   bootstrap (~> 4.0.0)
+=======
+  bootstrap
+>>>>>>> 34930e9f088ee610ba7ae8c405ff19be55cf713e
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
