@@ -1,17 +1,6 @@
 <%= form_with scope: :transaction, url: user_transactions_path, local: true do |form| %>
 
-<% if @transaction.errors.any? %>
-  <div>
-    <h2>
-      <%= pluralize(@transaction.errors.count, 'error') %> prohibited this user from being registered:
-    </h2>
-    <ul>
-      <% @transaction.errors.full_messages.each do |message| %>
-        <li> <%= message %> </li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+
 
 
 <table border = "2">
