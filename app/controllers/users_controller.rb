@@ -9,12 +9,16 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    respond_to do |format|
+      format.html
+      format.json { render json: @users }
+    end
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to @user
+      redirect_to  @user
     else
       render 'new'
     end
@@ -25,7 +29,7 @@ class UsersController < ApplicationController
     @transaction = Transaction.find_by(user_id: params[:id])
     respond_to do |format|
       format.html
-      #format.json { render :json => { :user => @user, :transaction => @transaction  }
+      format.json { render :json => { :user => @user, :transaction => @transaction  } }
     end
   end
 

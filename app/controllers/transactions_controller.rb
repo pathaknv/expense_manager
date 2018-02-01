@@ -34,11 +34,6 @@ class TransactionsController < ApplicationController
     end
   end
 
-  def filters
-
-  end
-
-
   private
 
   def transaction_params

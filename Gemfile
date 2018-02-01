@@ -41,7 +41,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'rspec-rails'
-  gem 'pry-rails'
+  # gem 'pry-rails'
   gem 'rails-controller-testing'
 end
 
@@ -59,8 +59,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'haml'
-<<<<<<< HEAD
 gem 'bootstrap', '~> 4.0.0'
-=======
-gem 'bootstrap'
->>>>>>> 34930e9f088ee610ba7ae8c405ff19be55cf713e
