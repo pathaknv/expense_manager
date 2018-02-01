@@ -8,7 +8,7 @@
      <tr>
        <td>
          <%= radio_button_tag(:filter_option, "by_date") %>
-         <%= label_tag(:filter_option_by_date, "Search by date") %>
+         <%= label_tag(:filter_option_by_date, "Search by Date") %>
        </td>
      </tr>
      <tr>
@@ -26,7 +26,7 @@
        <tr>
          <td>
            <%= radio_button_tag(:filter_option, "by_month") %>
-           <%= label_tag(:filter_option_by_month, "Search by month") %>
+           <%= label_tag(:filter_option_by_month, "Search by Month") %>
          </td>
        </tr>
        <tr>
@@ -48,7 +48,7 @@
        <tr>
          <td>Select Category</td>
          <td>
-           <%= select_tag(:category_id, options_for_select(1..12)) %>
+           <%= select_tag(:category_id, options_from_collection_for_select(@categories, "id", "name")) %>
          </td>
        </tr>
      </table>
