@@ -21,6 +21,10 @@ class TransactionsController < ApplicationController
     @transactions = @user.transactions.all
   end
 
+  def filters
+
+  end
+
 
   private
 
