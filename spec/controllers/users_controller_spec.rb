@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe TransactionsController, type: :controller do
+RSpec.describe UsersController, type: :controller do
   it 'Get Index Page' do
     get :index
-    binding.pry
     expect(response.status).to eq(200)
-    assert_template '/index'
+    assert_template 'users/index'
   end
 end

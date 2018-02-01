@@ -12,11 +12,19 @@ class TransactionsController < ApplicationController
   def show
     @user = User.find(params[:id])
     @transactions = Transaction.where(user_id: params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render :json => { :user => @user, :transactions => @transactions } }
+    end
   end
 
   def index
     @user = User.find(params[:user_id])
     @transactions = @user.transactions.all
+    respond_to do |format|
+      format.html
+      format.json { render :json => { :user => @user, :transactions => @transactions } }
+    end
   end
 
 
@@ -25,12 +33,7 @@ class TransactionsController < ApplicationController
   def transaction_params
     params.require(:transaction).permit(:transaction_type, :amount, :category_id, :user_id, :balance)
   end
-
-  # calcluate_balance methods takes user_id from parameters and finds balance from user model
-  # takes amount from new view
-  # calculates new balance
-  # updates new balance on user
-
+  
   def calculate_balance
     balance = User.select(:balance).where(id:params[:user_id]).pluck(:balance)[0]
     amount = params.require(:transaction).permit(:amount)[:amount].to_f
