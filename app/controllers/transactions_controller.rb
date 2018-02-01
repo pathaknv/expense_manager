@@ -5,8 +5,6 @@ class TransactionsController < ApplicationController
 
   def create
     @user = User.find(params[:user_id])
-    # @transaction_params_hash = transaction_params
-    # @transaction_params_hash[:transaction][:balance] = calculate_balance
     @transaction = @user.transactions.create!(transaction_params)
     redirect_to user_transactions_path(@user)
   end

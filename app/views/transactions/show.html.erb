@@ -1,13 +1,20 @@
 <h1>Transcation History</h1>
-<ul>
-  <% @transactions.each do |transaction| %>
-    <li><strong>Name: </strong><%= @user.first_name + ' ' + @user.last_name %></li>
-    <li><strong>Transcation Type: </strong><%= transaction.transaction_type %></li>
-    <li><strong>Amount: </strong><%= transaction.amount %></li>
-    <li><strong>Current Balance: </strong><%= transaction.balance %></li>
-    <li><strong>Time: </strong><%= transaction.created_at %></li>
-    <br><br>
+  <table border>
+    <tr>
+      <th>Name</th>
+      <th>Transcation Type</th>
+      <th>Amount</th>
+      <th>Current Balance</th>
+      <th>Time</th>
+    </tr>
+    <% @transactions.each do |transaction| %>
+    <tr>
+      <td><%= @user.first_name + ' ' + @user.last_name %></td>
+      <td><%= transaction.transaction_type %></td>
+      <td><%= transaction.amount %></td>
+      <td><%= transaction.balance %></td>
+      <td><%= transaction.created_at %></td>
+    </tr>
   <% end %>
-</ul>
-
+</table>
 <%= link_to('Back', user_path(@user)) %>

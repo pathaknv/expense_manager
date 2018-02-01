@@ -7,9 +7,9 @@ class Transaction < ApplicationRecord
 
   before_create do
     user = self.user
-    self.balance = user.balance - self.amount if self.transaction_type == 'credit'
-    self.balance = user.balance + self.amount if self.transaction_type == 'debit'
-    user.balance = self.balance
+    user.credit(amount) if self.transaction_type == 'credit'
+    user.debit(amount) if self.transaction_type == 'debit'
+    self.balance = user.balance
   end
 
 end

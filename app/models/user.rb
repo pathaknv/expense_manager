@@ -18,7 +18,13 @@ class User < ApplicationRecord
   validates :password, length: { in: 8..32, message: 'Length should between 8 to 32' }
   has_many :transactions
 
-  before_create do
-    balance = 0.0
+  def credit(amount)
+    self.balance = self.balance + amount
+    self.save
+  end
+
+  def debit(amount)
+    self.balance = self.balance - amount
+    self.save
   end
 end

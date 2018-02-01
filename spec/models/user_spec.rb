@@ -5,7 +5,6 @@ RSpec.describe User do
     it 'is valid user' do
       user = User.create!(first_name: 'Harish', last_name: 'Patankar', email: 'harishpatankar@gmail.com', password: '1234567890')
       expect(user.valid?).to eq(true)
-      expect(user.errors.full_messages).to eq([])
     end
 
     context 'Name Validation' do
