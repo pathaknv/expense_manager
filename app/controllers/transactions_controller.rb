@@ -27,6 +27,10 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def filters
+
+  end
+
 
   private
 
