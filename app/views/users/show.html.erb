@@ -1,11 +1,12 @@
-
-<h1>User Profile</h1>
-<ul>
-  <li><strong>Name: </strong><%= @user.first_name + @user.last_name %></li>
-  <li><strong>Email: </strong><%= @user.email%></li>
-  <li><strong>Balance: </strong><%= @user.balance%></li>
-</ul>
-
-<%= link_to('New Transcation', new_user_transaction_path(@user)) %>
-<%= link_to('Show Transcation',  user_transaction_path(@user)) if @transaction != nil %>
-<%= link_to('Back', users_path) %>
+<div class="container-fluid">
+  <h1><strong>User Profile</strong></h1>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Name: </strong><%= @user.first_name + @user.last_name %></li>
+    <li class="list-group-item"><strong>Email: </strong><%= @user.email%></li>
+    <li class="list-group-item"><strong>Balance: </strong><%= @user.balance%></li>
+  </ul>
+  <br><br>
+  <%= link_to('New Transcation', new_user_transaction_path(@user), class: 'btn btn-primary') %>
+  <%= link_to('Show Transcation',  user_transaction_path(@user), class: 'btn btn-primary') if @transaction != nil %>
+  <%= link_to('Back', users_path, class: 'btn btn-primary') %>
+</div>

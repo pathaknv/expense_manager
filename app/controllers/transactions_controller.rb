@@ -12,11 +12,11 @@ class TransactionsController < ApplicationController
   def show
     @user = User.find(params[:id])
     if params[:filter_option] == 'by_month'
-      @transactions = @user.transactions.where("cast(strftime('%m', created_at) as int) = ?", params[:month_id])
+      @transactions = @user.transactions.where("cast(strftime('%m', created_at) as int) = ?", params[:month_id]).order(created_at: :desc)
     elsif params[:filter_option] == 'by_date'
-      @transactions = @user.transactions.where(created_at: params[:start_date]..params[:end_date])
+      @transactions = @user.transactions.where(created_at: params[:start_date]..params[:end_date]).order(created_at: :desc)
     elsif params[:filter_option] == 'by_category'
-      @transactions = @user.transactions.where(category_id: params[:category_id])
+      @transactions = @user.transactions.where(category_id: params[:category_id]).order(created_at: :desc)
     end
     @categories = Category.all
     respond_to do |format|
@@ -37,7 +37,6 @@ class TransactionsController < ApplicationController
   def filters
 
   end
-
 
   private
 

@@ -1,32 +1,41 @@
 require 'rails_helper'
 
 RSpec.describe Transaction do
-  context "validation" do
-    it "is a valid transaction" do
-      transaction = Transaction.create!(transaction_type:"credit", amount:5000.5, category_id:1, balance:5000.5, user_id:1)
-      expect(transaction.valid?).to eq(true)
-    end
+
+  before(:all) do
+    @transaction = Transaction.new
+  end
+  it 'is valid amount' do
+    @transaction.amount = 500.5
+    @transaction.save
+    expect(@transaction.errors[:amount]).to eq([])
+  end
+  it 'is an invalid amount negative number' do
+    @transaction.amount = -300
+    @transaction.save
+    expect(@transaction.errors[:amount]).to eq(['negative amount or characters not allowed'])
+  end
+  it 'is an invalid amount for string' do
+    @transaction.amount = 'char_balance'
+    @transaction.save
+    expect(@transaction.errors[:amount]).to eq([])
   end
 
-  context "validation" do
-    it "is an invalid transaction" do
-      transaction = Transaction.create!(transaction_type:"AAA", amount:5000.5, category_id:1, balance:5000.5, user_id:1)
-      expect(transaction.valid?).to eq(true)
-    end
+  it 'is valid transaction type' do
+    @transaction.transaction_type = 'credit'
+    @transaction.save
+    expect(@transaction.errors[:transaction_type]).to eq([])
   end
 
+  it 'is valid transaction type' do
+    @transaction.transaction_type = 'debit'
+    @transaction.save
+    expect(@transaction.errors[:transaction_type]).to eq([])
+  end
 
-  context 'Amount Validation' do
-    it 'is valid amount' do
-      user = User.new
-      transaction.amount = 5000.5
-      expect(transaction.valid?).to eq(true)
-    end
-
-    context 'Balance Validation' do
-      it 'is valid balance' do
-        user = User.new
-        transaction.balance = 5000.5
-        expect(transaction.valid?).to eq(true)
-      end
+  it 'is an invalid transaction type' do
+    @transaction.transaction_type = 'Trans'
+    @transaction.save
+    expect(@transaction.errors[:transaction_type]).to eq(['invalid type'])
+  end
 end
