@@ -9,5 +9,5 @@
 #
 
 class Category < ApplicationRecord
-  has_one: transactions
+  has_many :transactions
 end
