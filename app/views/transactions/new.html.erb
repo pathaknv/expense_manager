@@ -6,7 +6,8 @@
     <tr>
       <td>Transaction Type</td>
       <td>
-        <select name = "transaction[transaction_type]" class="form-control">
+        <select name = "transaction[transaction_type]" class="form-control" onchange= categoryDropDown(this.value)>
+          <option value ="">Select Transaction Type</option>
           <option value = "credit">Credit</option>
           <option value = "debit">Debit</option>
         </td>
@@ -15,17 +16,44 @@
         <td>Amount</td>
         <td><%= form.text_field :amount, class: "form-control"%></td>
       </tr>
-      <tr>
-        <td>Category</td>
-        <td>
-          <select name = "transaction[category_id]" class="form-control">
-            <% @categories.each do |category| %>
-              <option value = <%= category.id %>> <%= category.name %> </option>
-            <% end %>
-          </select>
-        </td>
+      <tr id = 'category'>
+
+      </tr>
     </table>
     <%= link_to('Back', users_path, class: 'btn btn-primary') %>
     <%= form.submit :Submit, class: 'btn btn-primary' %>
   <% end %>
 </div>
+
+<script>
+  function categoryDropDown(selectValue)
+  {
+    var categories = []
+    var categoriesName = []
+    "<% @categories.each do |category|%>"
+      categories.push("<%= category.id %>")
+      categoriesName.push("<%= category.name %>")
+    "<% end %>"
+    if(selectValue == 'debit')
+    {
+      var tr = document.getElementById('category')
+      var td = document.createElement('td')
+      td.appendChild(document.createTextNode('Category'))
+      tr.appendChild(td)
+      var td = document.createElement('td')
+      var select = document.createElement('select')
+      i = 0
+      while(i < categories.length){
+        var option = document.createElement("option")
+        option.text = categoriesName[i]
+        option.value = categories[i]
+        select.appendChild(option)
+        i++
+      }
+      select.setAttribute('name', "transaction[category_id]")
+      select.classList.add('form-control')
+      td.appendChild(select)
+      tr.appendChild(td)
+    }
+  }
+</script>

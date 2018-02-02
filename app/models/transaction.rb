@@ -1,5 +1,5 @@
 class Transaction < ApplicationRecord
-  belongs_to :category
+  belongs_to :category, optional:true
   belongs_to :user
 
   validates :transaction_type, presence: true, inclusion: { in: %w(credit debit), message: "invalid type" }
