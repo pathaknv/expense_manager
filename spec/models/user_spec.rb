@@ -13,13 +13,13 @@ RSpec.describe User do
       it 'is invalid first_name' do
         user.first_name = ''
         user.save
-        expect(user.errors[:first_name]).to eq(['Field Cannot Be Empty'])
+        expect(user.errors[:first_name]).to eq([': Field Cannot Be Empty'])
       end
 
       it 'is invalid last_name' do
         user.last_name = ''
         user.save
-        expect(user.errors[:last_name]).to eq(['Field Cannot Be Empty'])
+        expect(user.errors[:last_name]).to eq([': Field Cannot Be Empty'])
       end
     end
 
@@ -27,13 +27,13 @@ RSpec.describe User do
       it 'is invalid email format' do
         user.email = 'harishgmail.com'
         user.save
-        expect(user.errors[:email]).to eq(['Check Email Format'])
+        expect(user.errors[:email]).to eq([': Check Email Format'])
       end
 
       it 'should not have empty email' do
         user.email = ''
         user.save
-        expect(user.errors[:email]).to eq(['Field Cannot Be Empty','Check Email Format'])
+        expect(user.errors[:email]).to eq([': Field Cannot Be Empty',': Check Email Format'])
       end
     end
 
@@ -41,7 +41,7 @@ RSpec.describe User do
       it 'is invalid password length' do
         user.password = 'qwerty'
         user.save
-        expect(user.errors[:password]).to eq(['Length should between 8 to 32'])
+        expect(user.errors[:password]).to eq([': Length should between 8 to 32'])
       end
     end
   end
